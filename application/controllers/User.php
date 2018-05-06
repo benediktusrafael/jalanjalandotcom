@@ -10,8 +10,7 @@ class User extends CI_Controller{
 		//load auto model
 		$this->load->model("user_m");
 	}
-	public function form()
-	{
+	public function form(){
 		$this->load->view("form_user_v");
 	}
 
@@ -28,5 +27,16 @@ class User extends CI_Controller{
 		var_dump($data);
 		//
 		$this ->user_m->add($data);
+	}
+
+	public function index(){
+		$dataa["tbuser"] = $this->user_m->gets();
+
+		$this->load->view("user_data", $dataa);
+	}
+	public function del($data){
+		$this->user_m->del($data);
+
+		redirect("user");
 	}
 }
